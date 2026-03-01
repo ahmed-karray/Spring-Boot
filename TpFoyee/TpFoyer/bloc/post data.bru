@@ -1,0 +1,23 @@
+meta {
+  name: post data
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8082/TpFoyee/bloc/add
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "nomBloc" : "ProjetDetail 1",
+    "capaciteBloc" : 500
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

@@ -1,0 +1,23 @@
+meta {
+  name: post data
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8082/TpFoyee/chambre/add
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "numeroChambre" : 2,
+    "typeChambre" : "DOUBLE"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

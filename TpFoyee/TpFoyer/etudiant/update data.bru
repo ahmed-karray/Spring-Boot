@@ -1,0 +1,27 @@
+meta {
+  name: update data
+  type: http
+  seq: 2
+}
+
+put {
+  url: http://localhost:8082/TpFoyee/etudiant/update
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "idEtudiant" : 1,
+    "nomEt" : "karray",
+    "prenomEt" : "Ahmed",
+    "cin" : 444442,
+    "ecole" : "ESPRIT",
+    "dateNaissance": "2003-11-10"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
