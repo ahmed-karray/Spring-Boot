@@ -20,15 +20,16 @@ public class Chambre {
 
     Long idChambre;
     Long numeroChambre;
+
     @Enumerated(EnumType.STRING)
-
     TypeChambre typeChambre;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JsonIgnore
-    Set<Reservation> Reservations;
 
-    @ManyToOne
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "chambre")
+    //@JsonIgnore
+    Set<Reservation> reservations;
+
+    @ManyToOne()
     @JsonIgnore
-    bloc bloc;
+    Bloc bloc;
 
 }

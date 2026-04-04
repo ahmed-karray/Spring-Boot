@@ -1,5 +1,6 @@
 package tp.esprit.tpfoyee.Entites;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -13,7 +14,7 @@ import java.util.Set;
 @NoArgsConstructor
 @ToString(exclude = {"chambres", "foyer"}) // ✅ Only change: prevent StackOverflow
 
-public class bloc {
+public class Bloc {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
@@ -21,7 +22,9 @@ public class bloc {
     String nomBloc;
     Long capaciteBloc;
     @ManyToOne
-    @JsonIgnore
+    //@JsonIgnore
+    @JsonBackReference
+
     Foyer foyer;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bloc")

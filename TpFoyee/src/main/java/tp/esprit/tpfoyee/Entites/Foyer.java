@@ -1,6 +1,7 @@
 package tp.esprit.tpfoyee.Entites;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,7 +12,7 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(exclude = {"universites", "bloc"})
+@ToString(exclude = {"universite", "bloc"})
 
 public class Foyer {
     @Id
@@ -26,6 +27,7 @@ public class Foyer {
     Universite universite;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "foyer")
-    @JsonIgnore
-    Set<bloc> blocs;
+    //@JsonIgnore
+    @JsonManagedReference
+    Set<Bloc> blocs;
 }

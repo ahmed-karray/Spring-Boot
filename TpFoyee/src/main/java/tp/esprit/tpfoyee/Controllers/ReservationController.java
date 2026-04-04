@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tp.esprit.tpfoyee.Entites.Reservation;
+import tp.esprit.tpfoyee.Repositories.ReservationRepository;
 import tp.esprit.tpfoyee.services.IReservationService;
 
 import java.util.List;
@@ -30,4 +31,16 @@ public class ReservationController {
 
     @GetMapping("findById/{id}")
     public Reservation findById(@PathVariable("id") String id) { return ReservationService.getReservationById(id); }
+
+    @PutMapping("/assignReservationToChambre/{idReservation}/{idChambre}")
+    @ResponseBody
+    public void assignReservationToChambre(@PathVariable("idReservation") String idReservation,@PathVariable("idChambre") Long idChambre){
+        ReservationService.assignReservationToChambre(idReservation, idChambre);
+    }
+    @PutMapping("/desaffecterReservationFromChambre/{idReservation}")
+    @ResponseBody
+    public void desaffecterReservationFromChambre(@PathVariable("idReservation") String idReservation){
+        ReservationService.DesaffecterReservationFromChambre(idReservation);
+    }
+
 }

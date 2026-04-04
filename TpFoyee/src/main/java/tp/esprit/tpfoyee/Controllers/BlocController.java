@@ -3,7 +3,7 @@ package tp.esprit.tpfoyee.Controllers;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import tp.esprit.tpfoyee.Entites.bloc;
+import tp.esprit.tpfoyee.Entites.Bloc;
 import tp.esprit.tpfoyee.services.IBlocService;
 
 import java.util.List;
@@ -17,12 +17,12 @@ public class BlocController {
     private IBlocService blocService;
 
     @PostMapping("/add")
-    public bloc addBloc(@RequestBody bloc b) {
+    public Bloc addBloc(@RequestBody Bloc b) {
         return blocService.addOrUpdateBloc(b);
     }
 
     @PutMapping("/update")
-    public bloc updateBloc(@RequestBody bloc b) {
+    public Bloc updateBloc(@RequestBody Bloc b) {
         return blocService.addOrUpdateBloc(b);
     }
 
@@ -32,12 +32,48 @@ public class BlocController {
     }
 
     @GetMapping("/findall")
-    public List<bloc> findAll() {
+    public List<Bloc> findAll() {
         return blocService.getAllBloc();
     }
 
     @GetMapping("/findById/{id}")
-    public bloc findById(@PathVariable("id") Long id) {
+    public Bloc findById(@PathVariable("id") Long id) {
         return blocService.getBlocById(id);
     }
+
+    @PutMapping("/assignBlocToFoyer/{idBloc}/{idFoyer}")
+    @ResponseBody
+    public void assignBlocToFoyer(@PathVariable("idBloc") Long idBloc,@PathVariable("idFoyer") Long idFoyer){
+        blocService.assignBlocToFoyer(idBloc, idFoyer);
+    }
+    @PutMapping("/desaffecterBlocFromFoyer/{idBloc}")
+    @ResponseBody
+    public void desaffecterBlocFromFoyer(@PathVariable("idBloc") Long idBloc){
+        blocService.DesaffecterBlocFromFoyer(idBloc);
+    }
+
+    @GetMapping("/nonAffectes")
+    public List<Bloc> findByFoyerIsNull() {
+        return blocService.findByFoyerIsNull();
+    }
+
+    @GetMapping("/capaciteGreaterThan/{capacite}")
+    public List<Bloc> findByCapaciteBlocGreaterThan(@PathVariable("capacite") Long capacite) {
+        return blocService.findByCapaciteBlocGreaterThan(capacite);
+    }
+
+    @GetMapping("/nomStartingWith/{prefix}")
+    public List<Bloc> findByNomBlocStartingWith(@PathVariable("prefix") String prefix) {
+        return blocService.findByNomBlocStartingWith(prefix);
+    }
+
+    @GetMapping("/nomStartingWithAndCapacite/{prefix}/{capacite}")
+    public List<Bloc> findByNomBlocStartingWithAndCapaciteBlocGreaterThan(
+            @PathVariable("prefix") String prefix,
+            @PathVariable("capacite") Long capacite) {
+        return blocService.findByNomBlocStartingWithAndCapaciteBlocGreaterThan(prefix, capacite);
+    }
+
+
+
 }

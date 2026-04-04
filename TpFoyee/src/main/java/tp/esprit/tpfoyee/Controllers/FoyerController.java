@@ -25,9 +25,17 @@ public class FoyerController {
     @DeleteMapping("/delete/{id}")
     public void deleteFoyer(@PathVariable("id") Long id) { foyerService.deleteFoyer(id);}
 
-    @GetMapping("findall")
+    @GetMapping("/findall")
     public List<Foyer> findAllFoyer() { return foyerService.getAllFoyer(); }
 
-    @GetMapping("findById/{id}")
+    @GetMapping("/findById/{id}")
     public Foyer findById(@PathVariable("id") Long id) { return foyerService.getFoyerById(id); }
+
+    @PostMapping("/addFoyerEtBlocAssocie")
+    @ResponseBody
+    public Foyer addFoyerEtBlocAssocie(@RequestBody Foyer f)
+    {
+        Foyer foyer = foyerService.addFoyerEtBlocAssocie(f);
+        return foyer;
+    }
 }

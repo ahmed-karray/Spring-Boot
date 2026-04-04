@@ -2,10 +2,7 @@ package tp.esprit.tpfoyee.Entites;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
@@ -16,7 +13,7 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(exclude = {"etudiants"})
+@ToString(exclude = {"etudiants", "chambre"})
 
 
 public class Reservation {
@@ -24,9 +21,13 @@ public class Reservation {
     String idReservation;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd") // ✅ Add this
     Date anneeUniversitaire;
-    Boolean estValid;
+    Boolean estValide;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JsonIgnore
     Set<Etudiant> etudiants;
+
+    @ManyToOne
+    @JsonIgnore
+    Chambre chambre;
 }

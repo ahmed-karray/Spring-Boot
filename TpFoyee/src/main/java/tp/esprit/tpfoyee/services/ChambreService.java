@@ -3,7 +3,9 @@ package tp.esprit.tpfoyee.services;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tp.esprit.tpfoyee.Entites.Chambre;
+import tp.esprit.tpfoyee.Entites.TypeChambre;
 import tp.esprit.tpfoyee.Repositories.ChambreRepository;
+import tp.esprit.tpfoyee.Repositories.ReservationRepository;
 
 import java.util.List;
 
@@ -11,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 
 public class ChambreService implements IChambreService {
+    private final ReservationRepository reservationRepository;
     ChambreRepository ChambreRepository;
 
     @Override
@@ -32,5 +35,26 @@ public class ChambreService implements IChambreService {
     public void deleteChambre(Long id) {
         ChambreRepository.deleteById(id);
 
+    }
+
+    @Override
+    public Chambre addChambreEtReservationAssocie(Chambre c) {
+        Chambre chambre = ChambreRepository.save(c);
+        chambre.getReservations().forEach(reservation -> {
+            reservation.setChambre(chambre);
+                    reservationRepository.save(reservation);
+                }
+                );
+        return chambre;
+    }
+
+    @Override
+    public List<Chambre> findByTypeChambre(TypeChambre typeChambre) {
+        return ChambreRepository.findByTypeChambre(typeChambre);
+    }
+
+    @Override
+    public Chambre findByNumeroChambre(Long numeroChambre) {
+        return ChambreRepository.findByNumeroChambre(numeroChambre);
     }
 }

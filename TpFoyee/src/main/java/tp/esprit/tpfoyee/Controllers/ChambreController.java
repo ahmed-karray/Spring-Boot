@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tp.esprit.tpfoyee.Entites.Chambre;
+import tp.esprit.tpfoyee.Entites.Foyer;
+import tp.esprit.tpfoyee.Entites.TypeChambre;
 import tp.esprit.tpfoyee.services.ChambreService;
 import tp.esprit.tpfoyee.services.IChambreService;
 
@@ -30,4 +32,24 @@ public class ChambreController {
 
     @GetMapping("findById/{id}")
     public Chambre findById(@PathVariable("id") Long id) { return chambreService.getChambreById(id); }
+
+    @PostMapping("/addChambreEtReservationAssocie")
+    @ResponseBody
+    public Chambre addChambreEtReservationAssocie(@RequestBody Chambre c)
+    {
+        Chambre chambre = chambreService.addChambreEtReservationAssocie(c);
+        return chambre;
+    }
+
+    @GetMapping("findByType/{typeChambre}")
+    public List<Chambre> findByTypeChambre(@PathVariable TypeChambre typeChambre){
+        return chambreService.findByTypeChambre(typeChambre);
+    }
+
+    @GetMapping("findByNumero/{numeroChambre}")
+    public Chambre findByNumero(@PathVariable Long numeroChambre){
+        return chambreService.findByNumeroChambre(numeroChambre);
+    }
+
+
 }

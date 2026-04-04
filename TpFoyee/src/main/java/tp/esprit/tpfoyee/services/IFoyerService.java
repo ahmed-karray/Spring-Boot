@@ -9,4 +9,5 @@ public interface IFoyerService {
     Foyer getFoyerById(Long id);
     List<Foyer> getAllFoyer();
     void deleteFoyer(Long id);
+    Foyer addFoyerEtBlocAssocie(Foyer f);
 }

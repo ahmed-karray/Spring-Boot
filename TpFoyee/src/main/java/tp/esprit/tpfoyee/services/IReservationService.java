@@ -9,4 +9,7 @@ public interface IReservationService {
     Reservation getReservationById(String id);
     List<Reservation> getAllReservation();
     void deleteReservation(String id);
+    void assignReservationToChambre(String idReservation, Long idChambre);
+    void DesaffecterReservationFromChambre(String idReservation);
+
 }
