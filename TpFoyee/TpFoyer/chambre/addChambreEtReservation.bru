@@ -1,0 +1,30 @@
+meta {
+  name: addChambreEtReservation
+  type: http
+  seq: 6
+}
+
+post {
+  url: http://localhost:8082/TpFoyee/chambre/addChambreEtReservationAssocie
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+      "numeroChambre": 101,
+      "typeChambre": "SIMPLE",
+      "reservations": [
+          {
+              "idReservation": "R1",
+              "anneeUniversitaire": "2024-09-01",
+              "estValide": true
+          }
+      ]
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

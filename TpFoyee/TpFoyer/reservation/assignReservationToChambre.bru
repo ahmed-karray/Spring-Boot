@@ -1,0 +1,16 @@
+meta {
+  name: assignReservationToChambre
+  type: http
+  seq: 6
+}
+
+put {
+  url: http://localhost:8082/TpFoyee/reservation/assignReservationToChambre/R2/5
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
