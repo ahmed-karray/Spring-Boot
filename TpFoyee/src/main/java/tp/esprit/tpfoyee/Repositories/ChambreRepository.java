@@ -1,6 +1,7 @@
 package tp.esprit.tpfoyee.Repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import tp.esprit.tpfoyee.Entites.Chambre;
 import tp.esprit.tpfoyee.Entites.TypeChambre;
 

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tp.esprit.tpfoyee.Entites.Bloc;
+import tp.esprit.tpfoyee.Entites.Chambre;
 import tp.esprit.tpfoyee.services.IBlocService;
 
 import java.util.List;
@@ -74,6 +75,18 @@ public class BlocController {
         return blocService.findByNomBlocStartingWithAndCapaciteBlocGreaterThan(prefix, capacite);
     }
 
+    @GetMapping("/findBlocsByChambres/{chambreId}")
+    public List<Bloc> findBlocsByChambre(@PathVariable("chambreId") Long chambreId) {
+        return blocService.findBlocsByChambre(chambreId);
+    }
 
+    @GetMapping("/groupByBlocAndType")
+    public List<Object[]> groupByBlocAndType() {
+        return blocService.groupByBlocAndTypeChambre();
+    }
 
+    @GetMapping("/blocChambreFoyer")
+    public List<Object[]> getBlocChambreFoyer() {
+        return blocService.getBlocChambreFoyer();
+    }
 }

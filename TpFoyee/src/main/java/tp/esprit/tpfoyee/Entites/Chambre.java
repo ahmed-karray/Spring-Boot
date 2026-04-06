@@ -1,5 +1,6 @@
 package tp.esprit.tpfoyee.Entites;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -29,7 +30,8 @@ public class Chambre {
     Set<Reservation> reservations;
 
     @ManyToOne()
-    @JsonIgnore
+    //@JsonIgnore
+    @JsonBackReference
     Bloc bloc;
 
 }

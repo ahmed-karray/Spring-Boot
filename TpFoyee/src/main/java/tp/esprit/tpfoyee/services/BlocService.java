@@ -3,11 +3,14 @@ package tp.esprit.tpfoyee.services;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tp.esprit.tpfoyee.Entites.Bloc;
+import tp.esprit.tpfoyee.Entites.Chambre;
 import tp.esprit.tpfoyee.Entites.Foyer;
 import tp.esprit.tpfoyee.Repositories.BlocRepository;
+import tp.esprit.tpfoyee.Repositories.ChambreRepository;
 import tp.esprit.tpfoyee.Repositories.FoyerRepository;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @AllArgsConstructor
@@ -15,6 +18,7 @@ public class BlocService implements IBlocService {
 
     private final FoyerRepository foyerRepository;
     BlocRepository blocRepository;
+    ChambreRepository chambreRepository;
 
     @Override
     public Bloc addOrUpdateBloc(Bloc b) {
@@ -74,5 +78,19 @@ public class BlocService implements IBlocService {
         return blocRepository.findByNomBlocStartingWithAndCapaciteBlocGreaterThan(prefix, capacite);
     }
 
+    @Override
+    public List<Bloc> findBlocsByChambre(Long chambreId) {
+        Chambre chambre = chambreRepository.findById(chambreId).get();
+        return blocRepository.findBlocsByChambre(chambre);
+    }
 
+    @Override
+    public List<Object[]> groupByBlocAndTypeChambre(){
+        return blocRepository.groupByBlocAndTypeChambre();
+    }
+
+    @Override
+    public List<Object[]> getBlocChambreFoyer(){
+        return blocRepository.getBlocChambreFoyer();
+    }
 }
